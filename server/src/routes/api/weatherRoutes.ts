@@ -2,31 +2,21 @@ import { Router } from 'express';
 const router = Router();
 
 import HistoryService from '../../service/historyService.js';
-//import WeatherService from '../../service/weatherService.js';
+import WeatherService from '../../service/weatherService.js';
 
 // POST Request with city name to retrieve weather data
 router.post('/', async (req, res) => {
-  const { city } = req.body;  // Assuming city name comes from the request body
-  if (!city) {
+  const { cityName } = req.body;  // Assuming city name comes from the request body
+  if (!cityName) {
     return res.status(400).json({ error: 'City name is required' });
   }
-
   try {
     // GET weather data from city name
-    const apiKey = '71d9c97b3ac1a50483f88098643dc879'; 
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
-    
-    // Check if the city is found
-    if (!response.ok) {
-      return res.status(response.status).json({ error: 'City not found' });
-    }
-
-    const weatherData = await response.json();
-
+    const weatherData = await WeatherService.getWeatherForCity(cityName);
     // Save city and weather data to search history
-    await HistoryService.saveCityToHistory(city, weatherData);
+    await HistoryService.saveCityToHistory(cityName);
 
-    res.status(200).json(weatherData); // Send weather data as response
+    res.status(200).json(weatherData); 
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch weather data' });
   }

@@ -1,1 +1,16 @@
-[]
+{
+  "cities": [
+    {
+      "id": "1741724876798",
+      "name": "Minneapolis"
+    },
+    {
+      "id": "1741725449059",
+      "name": "Minneapolis"
+    },
+    {
+      "id": "1741725592307",
+      "name": "Minneapolis"
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Define the City class with name, id, and weather data properties
 class City {
-  constructor(public id: string, public name: string, public weatherData: any) {}
+  constructor(public id: string, public name: string) {}
 }
 
 // Define the HistoryService class
@@ -11,7 +12,10 @@ class HistoryService {
   private filePath: string;
 
   constructor() {
-    this.filePath = path.join(__dirname, 'searchHistory.json');
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    this.filePath = path.join(__dirname, '../../db/db.json');
+    
   }
 
   // Read data from the JSON file
@@ -44,15 +48,15 @@ class HistoryService {
   // Add a city to the history
   async addCity(cityName: string): Promise<void> {
     const cities = await this.read();
-    const newCity = new City(Date.now().toString(), cityName, {}); 
+    const newCity = new City(Date.now().toString(), cityName); 
     cities.push(newCity); // Add the new city to the cities array
     await this.write(cities);
   }
 
   // Save city along with weather data to history
-  async saveCityToHistory(cityName: string, weatherData: any): Promise<void> {
+  async saveCityToHistory(cityName: string): Promise<void> {
     const cities = await this.read();
-    const newCity = new City(Date.now().toString(), cityName, weatherData); 
+    const newCity = new City(Date.now().toString(), cityName); 
     cities.push(newCity); // Add the new city and its weather data to the array
     await this.write(cities);
   }
