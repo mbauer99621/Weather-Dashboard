@@ -5,7 +5,6 @@ A weather dashboard application built with Node.js that allows users to get curr
 ## Features
 
 - Get current weather information (temperature, humidity, pressure, description) for a city.
-- Filter and display weather forecasts for noon (12:00 PM).
 - Fetch weather data using the city name and geographical coordinates (latitude and longitude).
 - Built with TypeScript, `node-fetch`, and `dotenv` to manage environment variables.
 
