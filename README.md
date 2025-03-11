@@ -38,16 +38,16 @@ Ensure that you have Node.js and npm (Node Package Manager) installed on your ma
    API_BASE_URL=https://api.openweathermap.org/data/2.5
    API_KEY=your-api-key
 
-### Usage
+## Usage
 
 Interact with the page by entering a city in to the search box.
 
-### Acknowledgments
+## Acknowledgments
 
 OpenWeather API for providing weather data.
 Node.js and TypeScript for enabling the development of this application.
 
-### License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
